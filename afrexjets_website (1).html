@@ -1,0 +1,326 @@
+// pages/index.jsx — Modern AfrexJets Next.js page (fixed & complete)
+// Tailwind CSS + Framer Motion recommended
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+export default function HomePage() {
+  return (
+    <div
+      style={{
+        "--brand-blue": "#00538f",
+        "--brand-light-blue": "#b3cde0",
+        "--bg": "#faf8f4",
+        "--muted": "#f1f1f2",
+      }}
+      className="min-h-screen bg-[var(--bg)] text-[#0b1220]"
+    >
+      <Navbar />
+
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <Hero />
+        <QuickStats />
+        <Services />
+        <Process />
+        <Team />
+        <BookingForm />
+        <Contact />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+/* ----------------------------- NAVBAR ----------------------------- */
+function Navbar() {
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/70 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[var(--brand-blue)] text-white flex items-center justify-center font-bold shadow-md">A</div>
+          <div>
+            <h1 className="font-bold tracking-tight text-lg">AfrexJets</h1>
+            <p className="text-xs text-[var(--brand-blue)]">Arusha, Tanzania</p>
+          </div>
+        </div>
+
+        <nav className="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#services" className="hover:text-[var(--brand-blue)] transition">Services</a>
+          <a href="#process" className="hover:text-[var(--brand-blue)] transition">Process</a>
+          <a href="#team" className="hover:text-[var(--brand-blue)] transition">Team</a>
+          <a href="#contact" className="px-4 py-2 rounded-xl bg-[var(--brand-blue)] text-white shadow hover:opacity-90 transition">Contact</a>
+        </nav>
+
+        <button className="md:hidden p-2" aria-label="Open menu">
+          <div className="space-y-1.5">
+            <span className="block w-6 h-0.5 bg-black" />
+            <span className="block w-6 h-0.5 bg-black" />
+            <span className="block w-6 h-0.5 bg-black" />
+          </div>
+        </button>
+      </div>
+    </header>
+  );
+}
+
+/* ----------------------------- HERO ----------------------------- */
+function Hero() {
+  return (
+    <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-6"
+      >
+        <span className="px-4 py-1.5 rounded-full bg-[var(--brand-light-blue)]/40 text-[var(--brand-blue)] text-xs font-semibold w-fit shadow-sm backdrop-blur-md">
+          Private • Secure • Global
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+          Luxury Air Travel
+          <br />
+          <span className="text-[var(--brand-blue)]">Redefined</span>
+        </h2>
+
+        <p className="text-lg text-gray-700 max-w-lg">
+          Effortless private jet chartering for executives, VIP families, delegations,
+          government missions, and corporate travel.
+        </p>
+
+        <div className="flex gap-4 mt-3">
+          <a
+            href="#booking"
+            className="px-6 py-3 rounded-xl bg-[var(--brand-blue)] text-white font-semibold shadow-md hover:opacity-90 transition"
+          >
+            Book a Flight
+          </a>
+          <a
+            href="#services"
+            className="px-6 py-3 rounded-xl border border-[var(--brand-blue)] text-[var(--brand-blue)] font-semibold hover:bg-[var(--brand-blue)] hover:text-white transition"
+          >
+            Explore Services
+          </a>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative"
+      >
+        <img
+          src="/assets/hero-jet.jpg"
+          alt="Private Jet"
+          className="rounded-3xl shadow-xl w-full object-cover"
+        />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/20 to-transparent" />
+      </motion.div>
+    </section>
+  );
+}
+
+/* ----------------------------- QUICK STATS ----------------------------- */
+function QuickStats() {
+  const items = [
+    ["Africa • Middle East • Europe", "Global Coverage"],
+    ["Business • Government • Medical", "Mission Types"],
+    ["Secure • Vetted • Trusted", "Safety Priority"],
+  ];
+
+  return (
+    <section className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {items.map(([value, label]) => (
+        <div
+          key={label}
+          className="p-6 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition"
+        >
+          <p className="text-sm font-semibold text-[var(--brand-blue)]">{label}</p>
+          <h3 className="text-lg font-bold mt-1">{value}</h3>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+/* ----------------------------- SERVICES ----------------------------- */
+function Services() {
+  const list = [
+    "Private Jet Charter",
+    "Executive / Government Travel",
+    "Emergency Medical Flights",
+    "Luxury Safari & Island Transfers",
+    "Cargo & Special Operations",
+    "Full Ground Logistics",
+  ];
+
+  return (
+    <section id="services" className="mt-20">
+      <h2 className="text-3xl font-bold mb-6">Our Services</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {list.map((item) => (
+          <div
+            key={item}
+            className="p-6 rounded-2xl bg-white shadow hover:shadow-md transition border border-gray-100"
+          >
+            <h3 className="font-semibold text-[var(--brand-blue)]">{item}</h3>
+            <p className="text-sm text-gray-700 mt-2">
+              Tailored charter solutions delivered with unmatched reliability.
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- PROCESS ----------------------------- */
+function Process() {
+  const steps = [
+    "Mission briefing & requirements",
+    "Aircraft sourcing & pricing",
+    "Proposal delivery (2–6 options)",
+    "Booking • Permits • Routing",
+    "Ground logistics & coordination",
+    "Flight-day monitoring & support",
+  ];
+
+  return (
+    <section id="process" className="mt-20">
+      <h2 className="text-3xl font-bold mb-6">How It Works</h2>
+      <ul className="space-y-4">
+        {steps.map((s, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-4 p-4 bg-white rounded-xl shadow border border-gray-100"
+          >
+            <span className="w-8 h-8 rounded-full bg-[var(--brand-blue)] text-white flex items-center justify-center font-bold shadow">
+              {i + 1}
+            </span>
+            <p className="text-gray-800">{s}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/* ----------------------------- TEAM ----------------------------- */
+function Team() {
+  const members = [
+    { name: "Joseph Madata", role: "Founder", initials: "JM" },
+    { name: "Jovitus Basheka", role: "Marketing", initials: "JB" },
+  ];
+
+  return (
+    <section id="team" className="mt-20">
+      <h2 className="text-3xl font-bold mb-6">Meet the Team</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {members.map((m) => (
+          <div
+            key={m.name}
+            className="p-6 bg-white rounded-xl shadow flex items-center gap-4 border border-gray-100"
+          >
+            <div className="w-14 h-14 rounded-xl bg-[var(--brand-blue)] text-white flex items-center justify-center font-bold text-lg shadow-lg">
+              {m.initials}
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg">{m.name}</h3>
+              <p className="text-sm text-gray-600">{m.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- BOOKING FORM ----------------------------- */
+function BookingForm() {
+  const [status, setStatus] = useState("idle");
+
+  function submit(e) {
+    e.preventDefault();
+    setStatus("sending");
+    setTimeout(() => setStatus("sent"), 1200);
+  }
+
+  return (
+    <section id="booking" className="mt-24 mb-20">
+      <h2 className="text-3xl font-bold mb-3">Book a Private Jet</h2>
+      <p className="text-gray-700 mb-6 max-w-xl">
+        Share your mission details and receive aircraft options within minutes.
+      </p>
+
+      <form
+        onSubmit={submit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow border border-gray-100"
+      >
+        <input className="input p-3 border rounded-md" placeholder="Full Name" required />
+        <input className="input p-3 border rounded-md" placeholder="Email" type="email" required />
+        <input className="input p-3 border rounded-md" placeholder="Phone Number" required />
+        <input className="input p-3 border rounded-md" placeholder="Passengers" type="number" required />
+
+        <input className="input p-3 border rounded-md md:col-span-2" placeholder="Departure Airport" required />
+        <input className="input p-3 border rounded-md md:col-span-2" placeholder="Destination Airport" required />
+
+        <input className="input p-3 border rounded-md" type="date" required />
+        <input className="input p-3 border rounded-md" type="date" placeholder="Return (optional)" />
+
+        <textarea
+          className="input p-3 border rounded-md md:col-span-2"
+          rows="4"
+          placeholder="Notes (VIP handling, medical needs, cargo, etc.)"
+        />
+
+        <button className="md:col-span-2 px-6 py-3 rounded-xl bg-[var(--brand-blue)] text-white font-semibold shadow hover:opacity-90 transition">
+          {status === "sending" ? "Submitting..." : status === "sent" ? "Request Sent ✔" : "Submit Request"}
+        </button>
+      </form>
+    </section>
+  );
+}
+
+/* ----------------------------- CONTACT ----------------------------- */
+function Contact() {
+  return (
+    <section id="contact" className="mt-20 mb-28">
+      <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-6 bg-white rounded-2xl shadow border border-gray-100">
+          <p className="font-semibold text-[var(--brand-blue)]">Get in touch</p>
+          <p className="mt-2">Email: <a href="mailto:afrexjets@gmail.com" className="text-[var(--brand-blue)]">afrexjets@gmail.com</a></p>
+          <p className="mt-1">Phone: +255-696-209624 | +255-743-060660</p>
+          <p className="mt-3 text-sm text-gray-600">For urgent missions include passenger count, IATA airport codes, and preferred date/time.</p>
+        </div>
+
+        <div className="p-6 bg-white rounded-2xl shadow border border-gray-100">
+          <p className="font-semibold text-[var(--brand-blue)]">Office</p>
+          <p className="mt-2">HS Live Limited, Arusha, Tanzania</p>
+          <p className="mt-3 text-sm text-gray-600">We aim to respond to booking requests within 1 business hour during operations.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- FOOTER ----------------------------- */
+function Footer() {
+  return (
+    <footer className="py-8 text-center text-sm text-gray-600">
+      <div>© {new Date().getFullYear()} AfrexJets — HS Live Limited</div>
+      <div className="mt-2">Luxury With Purpose — 10% of commission supports solar water wells</div>
+    </footer>
+  );
+}
+
+/*
+  Notes:
+  - Save this file as pages/index.jsx inside a Next.js project.
+  - Install framer-motion: npm install framer-motion
+  - Configure Tailwind CSS per the official docs and optionally add brand colors.
+  - Replace /assets/hero-jet.jpg with a real image in the public/assets folder.
+*/
